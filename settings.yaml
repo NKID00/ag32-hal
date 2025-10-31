@@ -1,6 +1,90 @@
 riscv_config:
+  core_interrupts:
+    - name: "MachineSoft"
+      value: 3
+      description: "Machine Software Interrupt"
+    - name: "MachineTimer"
+      value: 7
+      description: "Machine Timer Interrupt"
+    - name: "MachineExternal"
+      value: 11
+      description: "Machine External Interrupt"
+    - name: "Local0"
+      value: 16
+      description: "Local Interrupt 0"
+    - name: "Local1"
+      value: 17
+      description: "Local Interrupt 1"
+    - name: "Local2"
+      value: 18
+      description: "Local Interrupt 2"
+    - name: "Local3"
+      value: 19
+      description: "Local Interrupt 3"
+
+  priorities:
+    - name: "P0"
+      value: 0
+      description: "Priority level 0"
+    - name: "P1"
+      value: 1
+      description: "Priority level 1"
+    - name: "P2"
+      value: 2
+      description: "Priority level 2"
+    - name: "P3"
+      value: 3
+      description: "Priority level 3"
+    - name: "P4"
+      value: 4
+      description: "Priority level 4"
+    - name: "P5"
+      value: 5
+      description: "Priority level 5"
+    - name: "P6"
+      value: 6
+      description: "Priority level 6"
+    - name: "P7"
+      value: 7
+      description: "Priority level 7"
+    - name: "P8"
+      value: 8
+      description: "Priority level 8"
+    - name: "P9"
+      value: 9
+      description: "Priority level 9"
+    - name: "P10"
+      value: 10
+      description: "Priority level 10"
+    - name: "P11"
+      value: 11
+      description: "Priority level 11"
+    - name: "P12"
+      value: 12
+      description: "Priority level 12"
+    - name: "P13"
+      value: 13
+      description: "Priority level 13"
+    - name: "P14"
+      value: 14
+      description: "Priority level 14"
+    - name: "P15"
+      value: 15
+      description: "Priority level 15"
+
   harts:
     - name: "H0"
       value: 0
       description: "Hart 0"
+
+  clint:
+    name: "CLINT"
+    mtime_freq: 32768
+
+  plic:
+    name: "PLIC"
+    core_interrupt: "MachineExternal"
+    hart_id: "H0"
+
   base_isa: "rv32i"
+  mtvec_align: 128
