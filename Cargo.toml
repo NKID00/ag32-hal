@@ -1,6 +1,6 @@
 [workspace]
 default-members = ["."]
-members = [".", "pac"]
+members = [".", "pac", "examples/ag32vf303"]
 
 [workspace.dependencies]
 ag32-pac = { path = "pac", features = ["rt"] }
@@ -9,6 +9,7 @@ ag32-pac = { path = "pac", features = ["rt"] }
 name = "ag32-hal"
 version = "0.1.0"
 edition = "2024"
+license = "GPL-3.0-or-later"
 
 [dependencies]
 ag32-pac = { workspace = true }
@@ -25,3 +26,13 @@ embassy-usb-driver = "0.2"
 nb = "1.1.0"
 embedded-hal-nb = "1.0.0"
 futures = { version = "0.3", default-features = false, features = ["async-await"] }
+
+[profile.dev]
+opt-level = 's'
+
+[profile.release]
+strip = false
+opt-level = 'z'
+codegen-units = 1
+lto = 'fat'
+debug = 2
