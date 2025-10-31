@@ -1,0 +1,6 @@
+riscv_config:
+  harts:
+    - name: "H0"
+      value: 0
+      description: "Hart 0"
+  base_isa: "rv32i"

@@ -1,0 +1,573 @@
+_svd: "./AltaRiscv.svd"
+
+FLASH:
+  _add:
+    _interrupts:
+      FLASH:
+        value: 1
+
+RTC:
+  _add:
+    _interrupts:
+      RTC:
+        value: 2
+  RCC_BDCR:
+    RTCSEL:
+      _replace_enum:
+        NoClock: [0, "No clock"]
+        LSE: [1, "LSE"]
+        LSI: [2, "LSI"]
+        External: [3, "External"]
+  IWDG_CTRL:
+    PR:
+      _replace_enum:
+        Div2: [0, "Div 2"]
+        Div4: [1, "Div 4"]
+        Div8: [2, "Div 8"]
+        Div16: [3, "Div 16"]
+        Div32: [4, "Div 32"]
+        Div64: [5, "Div 64"]
+        Div128: [6, "Div 128"]
+        Div256: [7, "Div 256"]
+  BKP_RTCCR:
+    ASOS:
+      _replace_enum:
+        AlarmOutput: [0, "Alarm output"]
+        SecondOutput: [1, "Second output"]
+
+FCB0:
+  _add:
+    _interrupts:
+      FCB0:
+        value: 3
+
+WATCHDOG0:
+  _add:
+    _interrupts:
+      WATCHDOG0:
+        value: 4
+
+SPI0:
+  _add:
+    _interrupts:
+      SPI0:
+        value: 5
+  CTRL:
+    SCLK_DIV:
+      _replace_enum:
+        Div2: [2, "Div 2"]
+        Div4: [4, "Div 4"]
+        Div8: [8, "Div 8"]
+        Div16: [16, "Div 16"]
+        Div32: [32, "Div 32"]
+        Div64: [64, "Div 64"]
+        Div128: [128, "Div 128"]
+        Div256: [0, "Div 256"]
+  _array:
+    PHASE_CTRL*:
+      name: PHASE_CTRL%s
+      description: Phase control %s
+      PHASE_ACTION:
+        _replace_enum:
+          TX: [0, "TX"]
+          DummyTX: [1, "Dummy TX"]
+          RX: [2, "RX"]
+          Poll: [3, "Poll"]
+    PHASE_DATA*:
+      name: PHASE_DATA%s
+      description: Phase data %s
+
+SPI1:
+  _add:
+    _interrupts:
+      SPI1:
+        value: 6
+
+GPIO0:
+  _add:
+    _interrupts:
+      GPIO0:
+        value: 7
+  IBE:
+    IBE0: &ibe
+      _replace_enum:
+        SingleEdge: [0, "Single Edge"]
+        BothEdge: [1, "Both Edge"]
+    IBE1: *ibe
+    IBE2: *ibe
+    IBE3: *ibe
+    IBE4: *ibe
+    IBE5: *ibe
+    IBE6: *ibe
+    IBE7: *ibe
+  IEV:
+    IEV0: &iev
+      _replace_enum:
+        RisingEdgeOrHighLevel: [0, "Rising Edge/High Level"]
+        FallingEdgeOrLowLevel: [1, "Falling Edge/Low Level"]
+    IEV1: *iev
+    IEV2: *iev
+    IEV3: *iev
+    IEV4: *iev
+    IEV5: *iev
+    IEV6: *iev
+    IEV7: *iev
+  AFSEL:
+    AFSEL0: &afsel
+      _replace_enum:
+        SoftwareMode: [0, "Software Mode"]
+        HardwareMode: [1, "Hardware Mode"]
+    AFSEL1: *afsel
+    AFSEL2: *afsel
+    AFSEL3: *afsel
+    AFSEL4: *afsel
+    AFSEL5: *afsel
+    AFSEL6: *afsel
+    AFSEL7: *afsel
+
+GPIO1:
+  _add:
+    _interrupts:
+      GPIO1:
+        value: 8
+
+GPIO2:
+  _add:
+    _interrupts:
+      GPIO2:
+        value: 9
+
+GPIO3:
+  _add:
+    _interrupts:
+      GPIO3:
+        value: 10
+      
+GPIO4:
+  _add:
+    _interrupts:
+      GPIO4:
+        value: 11
+
+GPIO5:
+  _add:
+    _interrupts:
+      GPIO5:
+        value: 12
+
+GPIO6:
+  _add:
+    _interrupts:
+      GPIO6:
+        value: 13
+      
+GPIO7:
+  _add:
+    _interrupts:
+      GPIO7:
+        value: 14
+
+GPIO8:
+  _add:
+    _interrupts:
+      GPIO8:
+        value: 15
+
+GPIO9:
+  _add:
+    _interrupts:
+      GPIO9:
+        value: 16
+
+TIMER0:
+  _add:
+    _interrupts:
+      TIMER0:
+        value: 17
+  _array:
+    Timer?Ctrl:
+      TimerSize:
+        _replace_enum:
+          Bits16: [0, "16-bit"]
+          Bits32: [1, "32-bit"]
+      TimerPre:
+        _replace_enum:
+          Div1: [0, "Div 1"]
+          Div16: [1, "Div 16"]
+          Div256: [2, "Div 256"]
+      TimerMode:
+        _replace_enum:
+          FreeRunning: [0, "Free-running"]
+          Periodic: [1, "Periodic"]
+
+TIMER1:
+  _add:
+    _interrupts:
+      TIMER1:
+        value: 18
+
+GPTIMER0:
+  _add:
+    _interrupts:
+      GPTIMER0:
+        value: 19
+  CR1:
+    UDIS:
+      _replace_enum:
+        UEVEnabled: [0, "UEV enabled"]
+        UEVDisabled: [1, "UEV disabled"]
+    URS:
+      _replace_enum:
+        AllSources: [0, "All sources"]
+        CounterOverflowOrUnderflow: [1, "Counter overflow/underflow"]
+    DIR:
+      _replace_enum:
+        UpCounter: [0, "Up counter"]
+        DownCounter: [1, "Down counter"]
+    CMS:
+      _replace_enum:
+        EdgeAligned: [0, "Edge-aligned"]
+        CenterAligned1: [1, "Center-aligned 1"]
+        CenterAligned2: [2, "Center-aligned 2"]
+        CenterAligned3: [3, "Center-aligned 3"]
+    CKD: &div1248
+      _replace_enum:
+        Div1: [0, "Div 1"]
+        Div2: [1, "Div 2"]
+        Div4: [2, "Div 4"]
+        Div8: [3, "Div 8"]
+  CR2:
+    CCUS:
+      _replace_enum:
+        COMG: [0, "COMG"]
+        COMGAndTRGI: [1, "COMG and TRGI"]
+    MMS:
+      _replace_enum:
+        Reset: [0, "Reset"]
+        Enable: [1, "Enable"]
+        Update: [2, "Update"]
+        ComparePulse: [3, "Compare Pulse"]
+        OC0REF: [4, "OC0REF"]
+        OC1REF: [5, "OC1REF"]
+        OC2REF: [6, "OC2REF"]
+        OC3REF: [7, "OC3REF"]
+    TI0S:
+      _replace_enum:
+        TI0: [0, "TI0"]
+        TI0XorTI1XorTI2: [1, "XOR of TI0/TI1/TI2"]
+  SMCR:
+    SMS:
+      _replace_enum:
+        Disabled: [0, "Disabled"]
+        Encoder1: [1, "Encoder 1"]
+        Encoder2: [2, "Encoder 2"]
+        Encoder3: [3, "Encoder 3"]
+        Reset: [4, "Reset"]
+        Gated: [5, "Gated"]
+        Trigger: [6, "Trigger"]
+        ExternalClock1: [7, "External Clock 1"]
+    ETPS: *div1248
+    ETP:
+      _replace_enum:
+        NonInverted: [0, "Non-inverted"]
+        Inverted: [1, "Inverted"]
+  CCMR0_input:
+    CC0S: &ccs
+      _replace_enum:
+        Output: [0, "Output"]
+        InputDirect: [1, "Input direct"]
+        InputIndirect: [2, "Input indirect"]
+        InputTRC: [3, "Input TRC"]
+    IC0PSC: *div1248
+    CC1S: *ccs
+    IC1PSC: *div1248
+  CCMR0_output:
+    CC0S: *ccs
+    OC0M: &ocm
+      _replace_enum:
+        Frozen: [0, "Frozen"]
+        Active: [1, "Active"]
+        Inactive: [2, "Inactive"]
+        Toggle: [3, "Toggle"]
+        ForcedInactive: [4, "Forced inactive"]
+        ForcedActive: [5, "Forced active"]
+        Pwm1: [6, "Pwm1"]
+        Pwm2: [7, "Pwm2"]
+    CC1S: *ccs
+    OC1M: *ocm
+  CCMR1_input:
+    CC2S: *ccs
+    IC2PSC: *div1248
+    CC3S: *ccs
+    IC3PSC: *div1248
+  CCMR1_output:
+    CC2S: *ccs
+    OC2M: *ocm
+    CC3S: *ccs
+    OC3M: *ocm
+  CCER:
+    CC0P: &ccp
+      _replace_enum:
+        ActiveHigh: [0, "ACtive High"]
+        ActiveLow: [1, "ACtive Low"]
+    CC0NP: *ccp
+    CC1P: *ccp
+    CC1NP: *ccp
+    CC2P: *ccp
+    CC2NP: *ccp
+    CC3P: *ccp
+    CC3NP: *ccp
+  BDTR:
+    LOCK:
+      _replace_enum:
+        LockOff: [0, "Lock Off"]
+        LockLevel1: [1, "Lock Level 1"]
+        LockLevel2: [2, "Lock Level 2"]
+        LockLevel3: [3, "Lock Level 3"]
+    BKP:
+      _replace_enum:
+        ActiveLow: [0, "ACtive Low"]
+        ActiveHigh: [1, "ACtive High"]
+
+GPTIMER1:
+  _add:
+    _interrupts:
+      GPTIMER1:
+        value: 20
+
+GPTIMER2:
+  _add:
+    _interrupts:
+      GPTIMER2:
+        value: 21
+
+GPTIMER3:
+  _add:
+    _interrupts:
+      GPTIMER3:
+        value: 22
+
+GPTIMER4:
+  _add:
+    _interrupts:
+      GPTIMER4:
+        value: 23
+
+UART0:
+  _add:
+    _interrupts:
+      UART0:
+        value: 24
+  LCR_H:
+    EPS:
+      _replace_enum:
+        OddParity: [0, "Odd parity"]
+        EvenParity: [1, "Even parity"]
+    STP2:
+      _replace_enum:
+        StopBit1: [0, "1 stop bit"]
+        StopBits2: [1, "2 stop bits"]
+    WLEN:
+      _replace_enum:
+        Bits5: [0, "5 bits"]
+        Bits6: [1, "6 bits"]
+        Bits7: [2, "7 bits"]
+        Bits8: [3, "8 bits"]
+  IFLS:
+    TXIFLSEL: &iflsel
+      _replace_enum:
+        Ge1Over8: [0, ">= 1/8"]
+        Ge1Over4: [1, ">= 1/4"]
+        Ge1Over2: [2, ">= 1/2"]
+        Ge3Over4: [3, ">= 3/4"]
+        Ge7Over8: [4, ">= 7/8"]
+    RXIFLSEL: *iflsel
+
+UART1:
+  _add:
+    _interrupts:
+      UART1:
+        value: 25
+
+UART2:
+  _add:
+    _interrupts:
+      UART2:
+        value: 26
+
+UART3:
+  _add:
+    _interrupts:
+      UART3:
+        value: 27
+
+UART4:
+  _add:
+    _interrupts:
+      UART4:
+        value: 28
+
+CAN0:
+  _add:
+    _interrupts:
+      CAN0:
+        value: 29
+  OCR:
+    OCR:
+      _replace_enum:
+        NormalOutputMode: [2, "Normal Output Mode"]
+  ECC:
+    Code:
+      _replace_enum:
+        BitError: [0, "Bit error"]
+        FormError: [1, "Form error"]
+        StuffError: [2, "Stuff error"]
+        OtherError: [3, "Other error"]
+  # _array:
+  #   ACR*:
+  #     name: ACR%s
+  #     _strip_end:
+  #       - \[*
+  #   DATA*:
+  #     name: DATA%s
+  #     _strip_end:
+  #       - \[*
+  #   TX_DATA*:
+  #     name: TX_DATA%s
+  #     _strip_end:
+  #       - \[*
+  _delete: ["ACR*", "DATA*", "AMR*", "TX_DATA*"]
+
+I2C0:
+  _add:
+    _interrupts:
+      I2C0:
+        value: 30
+
+I2C1:
+  _add:
+    _interrupts:
+      I2C1:
+        value: 31
+
+DMAC0:
+  _add:
+    _interrupts:
+      DMAC0_INTR:
+        description: DMA combined interrupt
+        value: 32
+      DMAC0_INTTC:
+        description: DMA terminal count interrupt
+        value: 33
+      DMAC0_INTERR:
+        description: DMA error interrupt
+        value: 34
+  Channel%s:
+    Control:
+      SWidth: &width
+        _replace_enum:
+          Bits8: [0, "8-bit"]
+          Bits16: [1, "16-bit"]
+          Bits32: [2, "32-bit"]
+      DWidth: *width
+
+USB0:
+  _add:
+    _interrupts:
+      USB0:
+        value: 35
+  _array:
+    GPTIMER?CTRL:
+      GPTMODE:
+        _replace_enum:
+          Oneshot: [0, "Oneshot"]
+          Repeat: [1, "Repeat"]
+  PORTSC:
+    CCS:
+      _replace_enum:
+        NoDevice: [0, "No Device"]
+        DeviceAttached: [1, "Device Attached"]
+    LS:
+      _replace_enum:
+        SE0: [0, "SE0"]
+        JState: [1, "J-state"]
+        KState: [2, "K-state"]
+    PSPD:
+      _replace_enum:
+        FullSpeed: [0, "Full Speed"]
+        LowSpeed: [1, "Low Speed"]
+        HighSpeed: [2, "High Speed"]
+        NotConnected: [3, "Not Connected"]
+  OTGSC:
+    ID:
+      _replace_enum:
+        ADevice: [0, "A-device"]
+        BDevice: [1, "B-device"]
+    _modify:
+      "1msT":
+        name: MSTT
+      "1msS":
+        name: MSTS
+      "1msE":
+        name: MSTE
+  USBMODE:
+    CM:
+      _replace_enum:
+        Idle: [0, "Idle"]
+        DeviceMode: [2, "Device Mode"]
+        HostMode: [3, "Host Mode"]
+
+CRC0:
+  CR:
+    POLY_SIZE:
+      _replace_enum:
+        Bits32: [0, "32 bit"]
+        Bits16: [1, "16 bit"]
+        Bits8: [2, "8 bit"]
+        Bits7: [3, "7 bit"]
+    REV_IN:
+      _replace_enum:
+        None: [0, "None"]
+        ByByte: [1, "By byte"]
+        ByHalfWord: [2, "By half-word"]
+        ByWord: [3, "By word"]
+
+MAC0:
+  _add:
+    _interrupts:
+      MAC0:
+        value: 36
+  CTRL:
+    CTRL_DUPLEX:
+      _replace_enum:
+        HalfDuplex: [0, "Half duplex"]
+        FullDuplex: [1, "Full duplex"]
+  MDIO:
+    MDIO_MDCSC:
+      _replace_enum:
+        Div128: [0, "Div 128"]
+        Div64: [1, "Div 64"]
+        Div32: [2, "Div 32"]
+        Div16: [3, "Div 16"]
+  
+
+
+SYS:
+  _add:
+    _interrupts:
+      EXT_INT0:
+        value: 37
+      EXT_INT1:
+        value: 38
+      EXT_INT2:
+        value: 39
+      EXT_INT3:
+        value: 40
+      EXT_INT4:
+        value: 41
+      EXT_INT5:
+        value: 42
+      EXT_INT6:
+        value: 43
+      EXT_INT7:
+        value: 44
