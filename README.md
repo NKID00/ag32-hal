@@ -1,6 +1,6 @@
 # ag32-hal
 
-Experimental rust HAL (Hardware Abstraction Library) for the mysterious AG32VF303 microcontroller and FPGA combo chip from AGM.
+Experimental Rust HAL (Hardware Abstraction Library) for the mysterious AG32VF303 microcontroller and FPGA combo chip from AGM, with Embassy framework.
 
 AG32VF303 features 128K SRAM, 256K Flash, a RV32IMAFC CPU runs up to 248MHz and a built-in FPGA (namely AGRV2K) with 2K LUTs.
 
@@ -26,7 +26,7 @@ To build flash algorithm, install target-gen.
 
 ## License
 
-Distributed under GPL-3.0-or-later, except for the file svd/AltaRiscv.svd borrowed from official SDK.
+Distributed under GPL-3.0-or-later, except for the file svd/AltaRiscv.svd borrowed from official SDK (but I do suspect that their SDK is violating GPL by redistributing free software without including license information).
 
 <sub>
 Copyright (C) 2025 NKID00 <br>
