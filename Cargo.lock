@@ -3,6 +3,14 @@
 version = 4
 
 [[package]]
+name = "ag32-flash"
+version = "0.1.0"
+dependencies = [
+ "flash-algorithm",
+ "rtt-target",
+]
+
+[[package]]
 name = "ag32-hal"
 version = "0.1.0"
 dependencies = [
@@ -44,7 +52,7 @@ dependencies = [
  "embassy-time",
  "embedded-hal 1.0.0",
  "heapless 0.9.1",
- "panic-halt",
+ "panic-rtt-target",
  "riscv",
  "riscv-rt",
  "rtt-target",
@@ -304,6 +312,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "flash-algorithm"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cf0040922d40f085f9b4902ed60479bcc93389a59c253f3f715cc42cfc1ff1ee"
+
+[[package]]
 name = "fnv"
 version = "1.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -439,10 +453,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8d5439c4ad607c3c23abf66de8c8bf57ba8adcd1f129e699851a6e43935d339d"
 
 [[package]]
-name = "panic-halt"
-version = "1.0.0"
+name = "panic-rtt-target"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a513e167849a384b7f9b746e517604398518590a9142f4846a32e3c2a4de7b11"
+checksum = "9a8116ffce1f89818647b84fba66d16cfdf3c0bee3c9320e606588d3e7415ce7"
+dependencies = [
+ "critical-section",
+ "portable-atomic",
+ "rtt-target",
+]
 
 [[package]]
 name = "paste"

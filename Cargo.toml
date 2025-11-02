@@ -1,6 +1,6 @@
 [workspace]
 default-members = ["."]
-members = [".", "pac", "examples/ag32vf303"]
+members = [".", "pac", "flash", "examples/ag32vf303"]
 
 [workspace.dependencies]
 ag32-pac = { path = "pac", features = ["rt"] }

@@ -1,0 +1,58 @@
+name: AG32VF303
+chip_detection: []
+variants:
+  - name: AG32VF303
+    package_variants:
+      - AG32VF303KCU6
+      - AG32VF303CCT6
+      - AG32VF303VCT6
+    cores:
+      - name: main
+        type: riscv
+        core_access_options: !Riscv
+          hart_id: 0
+          offset: 0x0
+          dtm: !ArmDebug
+            ap: !v1 0
+    memory_map:
+      - !Ram
+        range:
+          start: 0x20000000
+          end: 0x20020000
+        cores:
+          - main
+      - !Nvm
+        range:
+          start: 0x80000000
+          end: 0x80040000
+        cores:
+          - main
+        access:
+          boot: true
+    flash_algorithms:
+      - ag32vf303
+flash_algorithms:
+  - name: ag32vf303
+    description: AG32VF303 flash loader
+    cores:
+      - main
+    default: true
+    instructions: ""
+    load_address: 0x0
+    pc_init: 0x0
+    pc_uninit: 0x0
+    pc_program_page: 0x0
+    pc_erase_sector: 0x0
+    pc_erase_all: 0x0
+    data_section_offset: 0x0
+    flash_properties:
+      address_range:
+        start: 0x80000000
+        end: 0x80040000
+      page_size: 0x100
+      erased_byte_value: 0xff
+      program_page_timeout: 100
+      erase_sector_timeout: 6000
+      sectors:
+        - size: 0x1000
+          address: 0x0
