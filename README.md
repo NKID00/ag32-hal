@@ -14,7 +14,7 @@ Documentation of this chip is pretty vague in general and register usages are mo
 
 Since chip pins and PLL are wired to the FPGA, their configurations (pull-up/down, open-drain, etc.) can only be accessed through the FCB0 (FPGA Control Block 0) peripheral. These configurations along side the FPGA can be automatically set up by the bootloader after reset according to option bytes.
 
-The chip has an ADIv5 Serial Wire/JTAG Debug Port, which incorporates a Memory Access Port to access RISC-V Debug Module Registers conforming to RISC-V Debug Specification v0.13. Use [this fork of probe-rs](https://github.com/NKID00/probe-rs/tree/riscv-behind-adi) (chip description file is included in that fork) to flash it.
+The chip has an ADIv5 Serial Wire/JTAG Debug Port, which incorporates a Memory Access Port to access RISC-V Debug Module Registers conforming to RISC-V Debug Specification v0.13. Use [this fork of probe-rs](https://github.com/NKID00/probe-rs/tree/ag32vf303) (chip description file is included in that fork) to flash it.
 
 ## Development
 
@@ -22,7 +22,7 @@ Minimum supported Rust version (MSRV) is latest nightly.
 
 To build the PAC (Peripheral Access Crate), install svdtools, svd2rust and form, then execute `generate-pac.sh`.
 
-To build target-rs flash algorithm and chip description file, install target-gen from the [this fork of probe-rs](https://github.com/NKID00/probe-rs/tree/riscv-behind-adi), then execute `cargo run -r` in `flash/`. `flash/target/AG32VF303.yaml` is the generated chip description file.
+To build target-rs flash algorithm and chip description file, install target-gen from the [this fork of probe-rs](https://github.com/NKID00/probe-rs/tree/ag32vf303), then execute `cargo run -r` in `flash/`. `flash/target/AG32VF303.yaml` is the generated chip description file.
 
 ## License
 
