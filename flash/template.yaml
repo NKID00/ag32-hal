@@ -32,7 +32,7 @@ variants:
   - ag32-flash
 flash_algorithms:
 - name: ag32-flash
-  description: AG32VF303 flash loader
+  description: AG32VF303 flash loader from https://github.com/NKID00/ag32-hal
   default: true
   instructions: ''
   load_address: 0x20000020
@@ -42,7 +42,6 @@ flash_algorithms:
   pc_erase_sector: 0
   pc_erase_all: 0
   data_section_offset: 0
-  rtt_location: 0
   flash_properties:
     address_range:
       start: 0

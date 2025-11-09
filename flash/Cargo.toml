@@ -5,8 +5,31 @@ edition = "2024"
 
 [dependencies]
 ag32-pac = { path = "../pac" }
-flash-algorithm = { version = "0.6.0", features = [] }
 riscv = { version = "0.15", features = ["critical-section-single-hart"] }
-rtt-target = "0.6"
+panic-halt = { version = "1.0", optional = true }
+rtt-target = { version = "0.6", optional = true }
 
-[workspace]  # to prevent being included in outer workspace, as it has a conflicting `memory.x`
+[dependencies.flash-algorithm]
+git = "https://github.com/probe-rs/flash-algorithm.git"
+rev = "32361889e1241498194eea4b6c3e1c8610fee956"
+default-features = false
+features = ["erase-chip", "verify"]
+
+[features]
+default = ["no-rtt", "dma"]
+no-rtt = ["dep:panic-halt"]
+rtt = ["dep:rtt-target", "flash-algorithm/panic-handler"]
+dma = []
+blank-check = ["flash-algorithm/blank-check"]
+
+[profile.dev]
+opt-level = 's'
+
+[profile.release]
+strip = false
+opt-level = 'z'
+codegen-units = 1
+lto = 'fat'
+debug = 2
+
+[workspace] # to prevent being included in outer workspace, as it has a conflicting `memory.x`

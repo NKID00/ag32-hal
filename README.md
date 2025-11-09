@@ -22,7 +22,7 @@ Minimum supported Rust version (MSRV) is latest nightly.
 
 To build the PAC (Peripheral Access Crate), install svdtools, svd2rust and form, then execute `generate-pac.sh`.
 
-To build target-rs flash algorithm and chip description file, install target-gen from the [this fork of probe-rs](https://github.com/NKID00/probe-rs/tree/riscv-behind-adi), then execute `cargo run -r` in `flash/`. `flash/target/ag32vf303.yaml` is the generated chip description file.
+To build target-rs flash algorithm and chip description file, install target-gen from the [this fork of probe-rs](https://github.com/NKID00/probe-rs/tree/riscv-behind-adi), then execute `cargo run -r` in `flash/`. `flash/target/AG32VF303.yaml` is the generated chip description file.
 
 ## License
 

@@ -8,6 +8,7 @@ version = "0.1.0"
 dependencies = [
  "ag32-pac",
  "flash-algorithm",
+ "panic-halt",
  "riscv",
  "rtt-target",
 ]
@@ -36,8 +37,13 @@ checksum = "361a90feb7004eca4019fb28352a9465666b24f840f5c3cddf0ff13920590b89"
 [[package]]
 name = "flash-algorithm"
 version = "0.6.0"
+source = "git+https://github.com/probe-rs/flash-algorithm.git?rev=32361889e1241498194eea4b6c3e1c8610fee956#32361889e1241498194eea4b6c3e1c8610fee956"
+
+[[package]]
+name = "panic-halt"
+version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cf0040922d40f085f9b4902ed60479bcc93389a59c253f3f715cc42cfc1ff1ee"
+checksum = "a513e167849a384b7f9b746e517604398518590a9142f4846a32e3c2a4de7b11"
 
 [[package]]
 name = "paste"
@@ -62,9 +68,9 @@ dependencies = [
 
 [[package]]
 name = "quote"
-version = "1.0.41"
+version = "1.0.42"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ce25767e7b499d1b604768e7cde645d14cc8584231ea6b295e9c9eb22c02e1d1"
+checksum = "a338cc41d27e6cc6dce6cefc13a0729dfbb81c262b1f519331575dd80ef3067f"
 dependencies = [
  "proc-macro2",
 ]
