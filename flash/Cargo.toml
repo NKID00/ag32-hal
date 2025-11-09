@@ -4,5 +4,9 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-flash-algorithm = { version = "0.6.0" }
-rtt-target = { version = "0.6" }
+ag32-pac = { path = "../pac" }
+flash-algorithm = { version = "0.6.0", features = [] }
+riscv = { version = "0.15", features = ["critical-section-single-hart"] }
+rtt-target = "0.6"
+
+[workspace]  # to prevent being included in outer workspace, as it has a conflicting `memory.x`

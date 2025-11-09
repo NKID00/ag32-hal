@@ -12,4 +12,6 @@ pub struct Config {
     pub rcc: rcc::Config,
 }
 
-pub fn init(config: Config) {}
+pub fn init(config: Config) {
+    critical_section::with(|cs| {})
+}

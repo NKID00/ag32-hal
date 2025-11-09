@@ -1,0 +1,2 @@
+[target.riscv32imafc-unknown-none-elf]
+runner = ["bash", "-c", "cp -a template.yaml target/ag32vf303.yaml ; target-gen elf -u $1 target/ag32vf303.yaml", "bash"]

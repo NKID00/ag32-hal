@@ -1,9 +1,6 @@
 [workspace]
 default-members = ["."]
-members = [".", "pac", "flash", "examples/ag32vf303"]
-
-[workspace.dependencies]
-ag32-pac = { path = "pac", features = ["rt"] }
+members = [".", "pac", "examples/ag32vf303"]
 
 [package]
 name = "ag32-hal"
@@ -12,7 +9,7 @@ edition = "2024"
 license = "GPL-3.0-or-later"
 
 [dependencies]
-ag32-pac = { workspace = true }
+ag32-pac = { path = "pac" }
 embedded-hal = "1.0"
 embedded-hal-async = "1.0"
 critical-section = "1.2"
@@ -25,7 +22,13 @@ embassy-time = "0.5"
 embassy-usb-driver = "0.2"
 nb = "1.1.0"
 embedded-hal-nb = "1.0.0"
-futures = { version = "0.3", default-features = false, features = ["async-await"] }
+futures = { version = "0.3", default-features = false, features = [
+    "async-await",
+] }
+
+[features]
+default = ["rt"]
+rt = ["ag32-pac/rt", "ag32-pac/critical-section"]
 
 [profile.dev]
 opt-level = 's'

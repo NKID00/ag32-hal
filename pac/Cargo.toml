@@ -5,11 +5,12 @@ edition = "2024"
 
 [dependencies]
 critical-section = { version = "1.0", optional = true }
-riscv = "0.15"
+riscv = { version = "0.15" }
 riscv-peripheral = "0.4"
 riscv-rt = { version = "0.16", features = ["single-hart"], optional = true }
 vcell = "0.1"
 
 [features]
-rt = ["riscv-rt"]
+critical-section = ["dep:critical-section", "riscv/critical-section-single-hart"]
+rt = ["dep:riscv-rt"]
 v-trap = ["rt", "riscv-rt/v-trap"]

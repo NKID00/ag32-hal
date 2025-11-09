@@ -6,23 +6,23 @@ AG32VF303 features 128K SRAM, 256K Flash, a RV32IMAFC CPU runs up to 248MHz and 
 
 The FPGA connects to both GPIO lines from the MCU and chip pins, effectively being a GPIO pin mux matrix. It is attached to the AHB, capable of operating as master and slave, and is able to initiate and respond to DMA requests.
 
+This implementation is largely inspired by ch32-hal and embassy-stm32.
+
 ## About the chip, AG32VF303
 
 Documentation of this chip is pretty vague in general and register usages are mostly either guessed from their names or learned from the SDK. Some of the peripherals are standard ones like the PL080 DMA controller.
 
-Since chip pins and PLL are wired to the FPGA, their configurations (pull-up/down, open-drain, etc.) are not directly accessible from the MCU part. They can only be configured along side the FPGA via the FCB0 peripheral (I have no idea what FCB stands for, FPGA Control Block?).
+Since chip pins and PLL are wired to the FPGA, their configurations (pull-up/down, open-drain, etc.) can only be accessed through the FCB0 (FPGA Control Block 0) peripheral. These configurations along side the FPGA can be automatically set up by the bootloader after reset according to option bytes.
 
-The chip has an ADIv5 Serial Wire/JTAG Debug Port, which incorporates a Memory Access Port to access RISC-V Debug Module Registers conforming to RISC-V Debug Specification v0.13. Use [this forked version of probe-rs](https://github.com/NKID00/probe-rs/tree/riscv-behind-adi) with chip description file and flash algorithms in this repo to flash it.
+The chip has an ADIv5 Serial Wire/JTAG Debug Port, which incorporates a Memory Access Port to access RISC-V Debug Module Registers conforming to RISC-V Debug Specification v0.13. Use [this fork of probe-rs](https://github.com/NKID00/probe-rs/tree/riscv-behind-adi) (chip description file is included in that fork) to flash it.
 
 ## Development
 
 Minimum supported Rust version (MSRV) is latest nightly.
 
-To build the PAC (Peripheral Access Crate), execute generate-pac.sh.
+To build the PAC (Peripheral Access Crate), install svdtools, svd2rust and form, then execute `generate-pac.sh`.
 
-This implementation is highly inspired by ch32-hal and embassy-stm32.
-
-To build flash algorithm, install target-gen.
+To build target-rs flash algorithm and chip description file, install target-gen from the [this fork of probe-rs](https://github.com/NKID00/probe-rs/tree/riscv-behind-adi), then execute `cargo run -r` in `flash/`. `flash/target/ag32vf303.yaml` is the generated chip description file.
 
 ## License
 

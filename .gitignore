@@ -1,3 +1,4 @@
 /target
 /pac/*
 !/pac/Cargo.toml
+flash/target

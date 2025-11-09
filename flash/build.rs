@@ -1,5 +1,11 @@
-fn main() {
-    println!("cargo:rustc-link-arg-bins=-Tmemory.x");
-    println!("cargo:rustc-link-arg-bins=-Tlink.x");
-    println!("cargo:rustc-link-arg-bins=-Tdefmt.x");
+use std::{env, error::Error, fs::File, io::Write as _, path::PathBuf};
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let out_dir = PathBuf::from(env::var_os("OUT_DIR").unwrap());
+    println!("cargo::rustc-link-search={}", out_dir.display());
+    File::create(out_dir.join("link.x"))?.write_all(include_bytes!("link.x"))?;
+    println!("cargo::rerun-if-changed=link.x");
+    println!("cargo::rustc-link-arg-bins=-Tlink.x");
+    println!("cargo::rustc-link-arg-bins=-Tmemory.x");
+    Ok(())
 }
