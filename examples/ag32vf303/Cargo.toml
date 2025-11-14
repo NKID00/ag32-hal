@@ -18,3 +18,5 @@ heapless = "0.9"
 defmt = "1.0"
 rtt-target = { version = "0.6", features = ["defmt"] }
 panic-rtt-target = "0.2"
+
+[workspace] # to prevent being included in outer workspace, as it has a conflicting `memory.x`

@@ -1,6 +1,6 @@
 [workspace]
 default-members = ["."]
-members = [".", "pac", "examples/ag32vf303"]
+members = [".", "pac"]
 
 [package]
 name = "ag32-hal"
@@ -13,7 +13,8 @@ ag32-pac = { path = "pac" }
 embedded-hal = "1.0"
 embedded-hal-async = "1.0"
 critical-section = "1.2"
-defmt = "1.0"
+defmt = { version = "1.0", optional = true }
+embassy-hal-internal = "0.3"
 embassy-sync = "0.7"
 embassy-futures = "0.1"
 embassy-time-queue-utils = "0.3"
@@ -26,9 +27,15 @@ futures = { version = "0.3", default-features = false, features = [
     "async-await",
 ] }
 
+[build-dependencies]
+proc-macro2 = "1.0"
+quote = "1.0"
+itertools = "0.14"
+
 [features]
 default = ["rt"]
 rt = ["ag32-pac/rt", "ag32-pac/critical-section"]
+defmt = ["dep:defmt"]
 
 [profile.dev]
 opt-level = 's'

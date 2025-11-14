@@ -1,4 +1,5 @@
 /target
 /pac/*
 !/pac/Cargo.toml
-flash/target
+/flash/target
+/examples/ag32vf303/target

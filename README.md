@@ -6,6 +6,8 @@ AG32VF303 features 128K SRAM, 256K Flash, a RV32IMAFC CPU runs up to 248MHz and 
 
 The FPGA connects to both GPIO lines from the MCU and chip pins, effectively being a GPIO pin mux matrix. It is attached to the AHB, capable of operating as master and slave, and is able to initiate and respond to DMA requests.
 
+Try out the blinky example: install [this fork of probe-rs](https://github.com/NKID00/probe-rs/tree/ag32vf303), navigate to examples/ag32vf303, then execute `cargo embed --bin blinky`.
+
 This implementation is largely inspired by ch32-hal and embassy-stm32.
 
 ## About the chip, AG32VF303

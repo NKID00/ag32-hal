@@ -1,0 +1,5 @@
+[default.general]
+chip = "AG32VF303"
+
+[default.rtt]
+enabled = true
